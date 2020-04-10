@@ -27,12 +27,15 @@ const covid19ImpactEstimator = (data) => {
     avgDailyIncomePopulation: 0.71
     },
     periodType: "days",
-    timeToElapse: 58,
+    timeToElapse: 28,
     reportedCases: 674,
     population: 66622705,
     totalHospitalBeds: 1380614
     }
-
-console.log(covid19ImpactEstimator(data)); */
+console.log('******************');
+console.log(CalculateFactor(data));
+console.log('******************');
+console.log(covid19ImpactEstimator(data));
+console.log('******************'); */
 
 export default covid19ImpactEstimator;

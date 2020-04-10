@@ -9,20 +9,27 @@ const formatDuration = (data) => {
   const period = data.timeToElapse;
 
   switch (periodType) {
-    case periodType === 'days':
+    case 'days': {
       return period;
-    case periodType === 'weeks':
+    }
+
+    case 'weeks': {
       return formatWeeksToDays(period);
-    case periodType === 'months':
+    }
+
+    case 'months': {
       return formatMonthsToDays(period);
-    default:
+    }
+
+    default: {
       return period;
+    }
   }
 };
 
 const CalculateFactor = (data) => {
   const days = formatDuration(data);
-  return days / 3;
+  return Math.floor(days / 3);
 };
 
 
