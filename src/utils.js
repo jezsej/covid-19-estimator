@@ -6,10 +6,9 @@ const formatMonthsToDays = (duration) => formatWeeksToDays(formatMonthsToWeeks(d
 
 const formatDuration = (data) => {
     const periodType = data.periodType;
-    const period  = data.timeToElapse;
+    const period = data.timeToElapse;
 
-    switch(periodType)
-    {
+    switch (periodType) {
         case periodType === 'days':
             return period;
         case periodType === 'weeks':
@@ -23,8 +22,8 @@ const formatDuration = (data) => {
 
 const CalculateFactor = (data) => {
     const days = formatDuration(data);
-    return days/3;
+    return days / 3;
 }
 
 
-export {formatDuration, CalculateFactor};
+export { formatDuration, CalculateFactor };
