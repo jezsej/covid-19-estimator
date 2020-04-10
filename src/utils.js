@@ -18,7 +18,8 @@ const formatDuration = (data) => {
     }
 
     case 'months': {
-      return formatMonthsToDays(period) + 2 * period;
+      const estimatedExtraDays = 2 * period;
+      return formatMonthsToDays(period) + estimatedExtraDays;
     }
 
     default: {
@@ -29,22 +30,22 @@ const formatDuration = (data) => {
 
 const CalculateFactor = (data) => {
   const days = formatDuration(data);
-  return Math.ceil(days / 3);
+  return days / 3;
 };
 
 /* const data = {
-    region: {
-    name: "Africa",
+  region: {
+    name: 'Africa',
     avgAge: 19.7,
     avgDailyIncomeInUSD: 5,
     avgDailyIncomePopulation: 0.71
-    },
-    periodType: "months",
-    timeToElapse: 3,
-    reportedCases: 674,
-    population: 66622705,
-    totalHospitalBeds: 1380614
-    }
+  },
+  periodType: 'months',
+  timeToElapse: 3,
+  reportedCases: 674,
+  population: 66622705,
+  totalHospitalBeds: 1380614
+};
 console.log(formatDuration(data));
 console.log('******************');
 console.log(CalculateFactor(data));
