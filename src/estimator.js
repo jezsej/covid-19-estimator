@@ -9,11 +9,11 @@ const covid19ImpactEstimator = (data) => {
     data,
     impact: {
       currentlyInfected: estimatedImpct,
-      infectionsByRequestedTime: Math.floor(estimatedImpct * 2 ** utils.CalculateFactor(data))
+      infectionsByRequestedTime: Math.ceil(estimatedImpct * 2 ** utils.CalculateFactor(data))
     },
     severeImpact: {
       currentlyInfected: estimatedSevereImpct,
-      infectionsByRequestedTime: Math.floor(estimatedSevereImpct * 2 ** utils.CalculateFactor(data))
+      infectionsByRequestedTime: Math.ceil(estimatedSevereImpct * 2 ** utils.CalculateFactor(data))
     }
 
   };
