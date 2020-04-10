@@ -29,7 +29,7 @@ const formatDuration = (data) => {
 
 const CalculateFactor = (data) => {
   const days = formatDuration(data);
-  return Math.floor(days / 3);
+  return Math.ceil(days / 3);
 };
 
 
