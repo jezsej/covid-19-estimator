@@ -1,24 +1,23 @@
 const covid19ImpactEstimator = (data) => {
+  const { reportedCases } = data;
+  const currentlyInfectedImpact = reportedCases * 10;
+  const currentlyInfectedSevere = reportedCases * 50;
 
-    const reportedCases = data.reportedCases;
-    const currentlyInfected_Impact = reportedCases * 10;
-    const currentlyInfected_Severe = reportedCases * 50;
-
-    return {
-        data: data,
-        impact: {
-            currentlyInfected: currentlyInfected_Impact,
-            infectionsByRequestedTime: currentlyInfected_Impact * 1024
-        },
-        severeImpact: {
-            currentlyInfected: currentlyInfected_Severe,
-            infectionsByRequestedTime: currentlyInfected_Severe * 1024
-        }
-
+  return {
+    data,
+    impact: {
+      currentlyInfected: currentlyInfectedImpact,
+      infectionsByRequestedTime: currentlyInfectedImpact * 1024
+    },
+    severeImpact: {
+      currentlyInfected: currentlyInfectedSevere,
+      infectionsByRequestedTime: currentlyInfectedSevere * 1024
     }
+
+  };
 };
 
-/*const data = {
+/* const data = {
     region: {
     name: "Africa",
     avgAge: 19.7,
@@ -32,6 +31,6 @@ const covid19ImpactEstimator = (data) => {
     totalHospitalBeds: 1380614
     }
 
-console.log(covid19ImpactEstimator(data));*/
+console.log(covid19ImpactEstimator(data)); */
 
 export default covid19ImpactEstimator;
