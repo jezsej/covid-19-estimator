@@ -2,18 +2,18 @@ import * as utils from './utils';
 
 const covid19ImpactEstimator = (data) => {
   const { reportedCases } = data;
-  const estimatedImpact = reportedCases * 10;
-  const estimatedSevereImpact = reportedCases * 50;
+  const estimatedImpct = reportedCases * 10;
+  const estimatedSevereImpct = reportedCases * 50;
 
   return {
     data,
     impact: {
-      currentlyInfected: estimatedImpact,
-      infectionsByRequestedTime: Math.ceil(estimatedImpact * 2 ** utils.CalculateFactor(data))
+      currentlyInfected: estimatedImpct,
+      infectionsByRequestedTime: Math.floor(estimatedImpct * 2 ** utils.CalculateFactor(data))
     },
     severeImpact: {
-      currentlyInfected: estimatedSevereImpact,
-      infectionsByRequestedTime: Math.ceil(estimatedSevereImpact * 2 ** utils.CalculateFactor(data))
+      currentlyInfected: estimatedSevereImpct,
+      infectionsByRequestedTime: Math.floor(estimatedSevereImpct * 2 ** utils.CalculateFactor(data))
     }
 
   };

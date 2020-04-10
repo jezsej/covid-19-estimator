@@ -40,8 +40,8 @@ const CalculateFactor = (data) => {
     avgDailyIncomeInUSD: 5,
     avgDailyIncomePopulation: 0.71
   },
-  periodType: 'months',
-  timeToElapse: 3,
+  periodType: 'days',
+  timeToElapse: 7,
   reportedCases: 674,
   population: 66622705,
   totalHospitalBeds: 1380614
