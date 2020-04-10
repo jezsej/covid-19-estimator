@@ -1,3 +1,5 @@
+import * as utils from './utils';
+
 const covid19ImpactEstimator = (data) => {
   const { reportedCases } = data;
   const currentlyInfectedImpact = reportedCases * 10;
@@ -7,11 +9,11 @@ const covid19ImpactEstimator = (data) => {
     data,
     impact: {
       currentlyInfected: currentlyInfectedImpact,
-      infectionsByRequestedTime: currentlyInfectedImpact * 1024
+      infectionsByRequestedTime: currentlyInfectedImpact * 2 ** utils.CalculateFactor(data)
     },
     severeImpact: {
       currentlyInfected: currentlyInfectedSevere,
-      infectionsByRequestedTime: currentlyInfectedSevere * 1024
+      infectionsByRequestedTime: currentlyInfectedSevere * 2 ** utils.CalculateFactor(data)
     }
 
   };
