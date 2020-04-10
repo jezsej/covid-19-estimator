@@ -1,22 +1,18 @@
-
-//import * as utils from './utils.js';
-
 const covid19ImpactEstimator = (data) => {
     
-    let reportedCases = data.reportedCases;
-
-    let currentlyInfected_impact = reportedCases * 10;
-    let currentlyInfected_severe = reportedCases * 50;
+    const reportedCases = data.reportedCases;
+    const currentlyInfected_Impact = reportedCases * 10;
+    const currentlyInfected_Severe = reportedCases * 50;
 
     return {
-        data : data,
+        data: data,
         impact: {
-            currentlyInfected : currentlyInfected_impact,
-            infectionsByRequestedTime: currentlyInfected_impact * 1024
+            currentlyInfected : currentlyInfected_Impact,
+            infectionsByRequestedTime: currentlyInfected_Impact * 1024
         },
         severeImpact: {
-            currentlyInfected : currentlyInfected_severe,
-            infectionsByRequestedTime: currentlyInfected_severe * 1024
+            currentlyInfected : currentlyInfected_Severe,
+            infectionsByRequestedTime: currentlyInfected_Severe * 1024
         }
 
          }

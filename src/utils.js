@@ -1,12 +1,12 @@
-const formatWeeksToDays = (duration) =>  duration * 7;
+const formatWeeksToDays = (duration) => duration * 7;
 
-const formatMonthsToWeeks = (duration) =>  duration * 4;
+const formatMonthsToWeeks = (duration) => duration * 4;
 
-const formatMonthsToDays = (duration) => formatWeeksToDays(formatMonthsToWeeks(duration))
+const formatMonthsToDays = (duration) => formatWeeksToDays(formatMonthsToWeeks(duration));
 
 const formatDuration = (data) => {
-    let periodType = data.periodType;
-    let period  = data.timeToElapse;
+    const periodType = data.periodType;
+    const period  = data.timeToElapse;
 
     switch(periodType)
     {
@@ -22,9 +22,9 @@ const formatDuration = (data) => {
 }
 
 const CalculateFactor = (data) => {
-    let days = formatDuration(data);
+    const days = formatDuration(data);
     return days/3;
 }
 
 
-export  {formatDuration, CalculateFactor};
+export {formatDuration, CalculateFactor};
