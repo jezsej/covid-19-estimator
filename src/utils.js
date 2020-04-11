@@ -32,22 +32,14 @@ const CalculateFactor = (data) => {
   return Math.floor(days / 3);
 };
 
+const CalcInfected = (cases) => {
+  const bestCase = cases * 10;
+  const worstCase = cases * 50;
 
-/* const data = {
-  region: {
-    name: 'Africa',
-    avgAge: 19.7,
-    avgDailyIncomeInUSD: 5,
-    avgDailyIncomePopulation: 0.71
-  },
-  periodType: 'days',
-  timeToElapse: 7,
-  reportedCases: 674,
-  population: 66622705,
-  totalHospitalBeds: 1380614
+  return {
+    bestCase,
+    worstCase
+  };
 };
-console.log(formatDuration(data));
-console.log('******************');
-console.log(CalculateFactor(data));
-console.log('******************'); */
-export { formatDuration, CalculateFactor };
+
+export { formatDuration, CalculateFactor, CalcInfected };
