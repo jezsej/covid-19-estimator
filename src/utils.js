@@ -10,20 +10,14 @@ const formatDuration = (data) => {
 
   switch (periodType) {
     case 'days': {
-      console.log('periodType', periodType);
-      console.log('timeToElapse', timeToElapse);
       return timeToElapse;
     }
 
     case 'weeks': {
-      console.log('periodType', periodType);
-      console.log('timeToElapse', timeToElapse);
       return formatWeeksToDays(timeToElapse);
     }
 
     case 'months': {
-      console.log('periodType', periodType);
-      console.log('timeToElapse', timeToElapse);
       const estimatedExtraDays = 2 * timeToElapse;
       return formatMonthsToDays(timeToElapse) + estimatedExtraDays;
     }
