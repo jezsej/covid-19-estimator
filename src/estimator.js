@@ -7,6 +7,7 @@ const formatMonthsToWeeks = (duration) => duration * 4;
 const formatMonthsToDays = (duration) => formatWeeksToDays(formatMonthsToWeeks(duration));
 
 const formatDuration = (data) => {
+  console.log(data);
   const { periodType, timeToElapse } = data;
 
   switch (periodType) {
