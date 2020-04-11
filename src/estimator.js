@@ -1,10 +1,9 @@
 import * as utils from './utils';
 
 const covid19ImpactEstimator = (data) => {
-  const { reportedCases, totalHospitalBeds, region } = data;
+  const { reportedCases: cases, totalHospitalBeds, region } = data;
   const { avgDailyIncomeInUSD: avgUSD, avgDailyIncomePopulation: avgDailyIncomePpltn } = region;
-  const iCurrentlyInfected = reportedCases * 10;
-  const sCurrentlyInfected = reportedCases * 50;
+  const { bestCase: iCurrentlyInfected, worstCase: sCurrentlyInfected } = utils.CalcInfected(cases);
   const iInfections = iCurrentlyInfected * (2 ** utils.CalculateFactor(data));
   const sInfections = sCurrentlyInfected * (2 ** utils.CalculateFactor(data));
   const iSevereCasesByRequestedTime = Math.trunc(0.15 * (iInfections));
