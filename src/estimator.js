@@ -1,62 +1,45 @@
 import * as utils from './utils';
 
 const covid19ImpactEstimator = (data) => {
-  const { reportedCases, totalHospitalBeds } = data;
+  const { reportedCases, totalHospitalBeds, region } = data;
+  const { avgDailyIncomeInUSD: avgUSD, avgDailyIncomePopulation: avgDailyIncomePpltn } = region;
   const iCurrentlyInfected = reportedCases * 10;
   const sCurrentlyInfected = reportedCases * 50;
-  const iInfectionsByRequestedTime = iCurrentlyInfected * (2 ** utils.CalculateFactor(data));
-  const sInfectionsByRequestedTime = sCurrentlyInfected * (2 ** utils.CalculateFactor(data));
-  const iSevereCasesByRequestedTime = Math.trunc(0.15 * (iInfectionsByRequestedTime));
-  const sSevereCasesByRequestedTime = Math.trunc(0.15 * (sInfectionsByRequestedTime));
+  const iInfections = iCurrentlyInfected * (2 ** utils.CalculateFactor(data));
+  const sInfections = sCurrentlyInfected * (2 ** utils.CalculateFactor(data));
+  const iSevereCasesByRequestedTime = Math.trunc(0.15 * (iInfections));
+  const sSevereCasesByRequestedTime = Math.trunc(0.15 * (sInfections));
   const iAvailableBeds = Math.trunc((0.35 * totalHospitalBeds) - iSevereCasesByRequestedTime);
   const sAvailableBeds = Math.trunc((0.35 * totalHospitalBeds) - sSevereCasesByRequestedTime);
-  const iCasesForICUByRequestedTime = Math.trunc(0.05 * iInfectionsByRequestedTime);
-  const sCasesForICUByRequestedTime = Math.trunc(0.05 * sInfectionsByRequestedTime);
-  const iCasesForVentilatorsByRequestedTime = Math.trunc(0.02 * iInfectionsByRequestedTime);
-  const sCasesForVentilatorsByRequestedTime = Math.trunc(0.02 * sInfectionsByRequestedTime);
-  const iDollarsInFlight = Math.trunc((iInfectionsByRequestedTime * 0.65 * 1.5) / 30);
-  const sDollarsInFlight = Math.trunc((sInfectionsByRequestedTime * 0.65 * 1.5) / 30);
+  const iCasesForICUByRequestedTime = Math.trunc(0.05 * iInfections);
+  const sCasesForICUByRequestedTime = Math.trunc(0.05 * sInfections);
+  const iCasesForVentilatorsByRequestedTime = Math.trunc(0.02 * iInfections);
+  const sCasesForVentilatorsByRequestedTime = Math.trunc(0.02 * sInfections);
+  const iDollars = (iInfections * avgDailyIncomePpltn * avgUSD) / utils.formatDuration(data);
+  const sDollars = (sInfections * avgDailyIncomePpltn * avgUSD) / utils.formatDuration(data);
 
   return {
     data,
     impact: {
       currentlyInfected: iCurrentlyInfected,
-      infectionsByRequestedTime: iInfectionsByRequestedTime,
+      infectionsByRequestedTime: iInfections,
       severeCasesByRequestedTime: iSevereCasesByRequestedTime,
       hospitalBedsByRequestedTime: iAvailableBeds,
       casesForICUByRequestedTime: iCasesForICUByRequestedTime,
       casesForVentilatorsByRequestedTime: iCasesForVentilatorsByRequestedTime,
-      dollarsInFlight: iDollarsInFlight
+      dollarsInFlight: Math.trunc(iDollars)
     },
     severeImpact: {
       currentlyInfected: sCurrentlyInfected,
-      infectionsByRequestedTime: sInfectionsByRequestedTime,
+      infectionsByRequestedTime: sInfections,
       severeCasesByRequestedTime: sSevereCasesByRequestedTime,
       hospitalBedsByRequestedTime: sAvailableBeds,
       casesForICUByRequestedTime: sCasesForICUByRequestedTime,
       casesForVentilatorsByRequestedTime: sCasesForVentilatorsByRequestedTime,
-      dollarsInFlight: sDollarsInFlight
+      dollarsInFlight: Math.trunc(sDollars)
     }
 
   };
 };
-
-/* const data = {
-    region: {
-      name: 'Africa',
-      avgAge: 19.7,
-      avgDailyIncomeInUSD: 1,
-      avgDailyIncomePopulation: 0.71
-    },
-    reportedCases: 70,
-    population: 4888039,
-    totalHospitalBeds: 173327,
-    timeToElapse: 3,
-    periodType: 'months'
-  }
-
-console.log('******************');
-console.log(covid19ImpactEstimator(data));
-console.log('******************'); */
 
 export default covid19ImpactEstimator;
