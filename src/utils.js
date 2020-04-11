@@ -5,33 +5,39 @@ const formatMonthsToWeeks = (duration) => duration * 4;
 const formatMonthsToDays = (duration) => formatWeeksToDays(formatMonthsToWeeks(duration));
 
 const formatDuration = (data) => {
-  const { periodType } = data;
-  const period = data.timeToElapse;
+  // console.log(data);
+  const { periodType, timeToElapse } = data;
 
   switch (periodType) {
     case 'days': {
-      return period;
+      // console.log('periodType', periodType);
+      // console.log('timeToElapse', timeToElapse);
+      return timeToElapse;
     }
 
     case 'weeks': {
-      return formatWeeksToDays(period);
+      // console.log('periodType', periodType);
+      // console.log('timeToElapse', timeToElapse);
+      return formatWeeksToDays(timeToElapse);
     }
 
     case 'months': {
-      const estimatedExtraDays = 2 * period;
-      return formatMonthsToDays(period) + estimatedExtraDays;
+      // console.log('periodType', periodType);
+      // console.log('timeToElapse', timeToElapse);
+      const estimatedExtraDays = 2 * timeToElapse;
+      return formatMonthsToDays(timeToElapse) + estimatedExtraDays;
     }
-
     default: {
-      return period;
+      return timeToElapse;
     }
   }
 };
 
 const CalculateFactor = (data) => {
   const days = formatDuration(data);
-  return days / 3;
+  return Math.floor(days / 3);
 };
+
 
 /* const data = {
   region: {

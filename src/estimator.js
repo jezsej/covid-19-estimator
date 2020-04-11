@@ -1,44 +1,4 @@
-// import * as utils from './utils';
-
-const formatWeeksToDays = (duration) => duration * 7;
-
-const formatMonthsToWeeks = (duration) => duration * 4;
-
-const formatMonthsToDays = (duration) => formatWeeksToDays(formatMonthsToWeeks(duration));
-
-const formatDuration = (data) => {
-  console.log(data);
-  const { periodType, timeToElapse } = data;
-
-  switch (periodType) {
-    case 'days': {
-      console.log('periodType', periodType);
-      console.log('timeToElapse', timeToElapse);
-      return timeToElapse;
-    }
-
-    case 'weeks': {
-      console.log('periodType', periodType);
-      console.log('timeToElapse', timeToElapse);
-      return formatWeeksToDays(timeToElapse);
-    }
-
-    case 'months': {
-      console.log('periodType', periodType);
-      console.log('timeToElapse', timeToElapse);
-      const estimatedExtraDays = 2 * timeToElapse;
-      return formatMonthsToDays(timeToElapse) + estimatedExtraDays;
-    }
-    default: {
-      return timeToElapse;
-    }
-  }
-};
-
-const CalculateFactor = (data) => {
-  const days = formatDuration(data);
-  return Math.floor(days / 3);
-};
+import * as utils from './utils';
 
 const covid19ImpactEstimator = (data) => {
   const { reportedCases } = data;
@@ -49,11 +9,11 @@ const covid19ImpactEstimator = (data) => {
     data,
     impact: {
       currentlyInfected: iCurrentlyInfected,
-      infectionsByRequestedTime: iCurrentlyInfected * (2 ** CalculateFactor(data))
+      infectionsByRequestedTime: iCurrentlyInfected * (2 ** utils.CalculateFactor(data))
     },
     severeImpact: {
       currentlyInfected: sCurrentlyInfected,
-      infectionsByRequestedTime: sCurrentlyInfected * (2 ** CalculateFactor(data))
+      infectionsByRequestedTime: sCurrentlyInfected * (2 ** utils.CalculateFactor(data))
     }
 
   };
