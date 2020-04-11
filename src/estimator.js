@@ -7,25 +7,26 @@ const formatMonthsToWeeks = (duration) => duration * 4;
 const formatMonthsToDays = (duration) => formatWeeksToDays(formatMonthsToWeeks(duration));
 
 const formatDuration = (data) => {
-  const { periodType } = data;
-  const period = data.timeToElapse;
+  const { periodType, timeToElapse } = data;
 
   switch (periodType) {
     case 'days': {
-      return period;
+      console.log('periodType', periodType);
+      return timeToElapse;
     }
 
     case 'weeks': {
-      return formatWeeksToDays(period);
+      console.log('periodType', periodType);
+      return formatWeeksToDays(timeToElapse);
     }
 
     case 'months': {
-      const estimatedExtraDays = 2 * period;
-      return formatMonthsToDays(period) + estimatedExtraDays;
+      console.log('periodType', periodType);
+      const estimatedExtraDays = 2 * timeToElapse;
+      return formatMonthsToDays(timeToElapse) + estimatedExtraDays;
     }
-
     default: {
-      return period;
+      return timeToElapse;
     }
   }
 };
@@ -44,11 +45,11 @@ const covid19ImpactEstimator = (data) => {
     data,
     impact: {
       currentlyInfected: estimatedImpct,
-      infectionsByRequestedTime: estimatedImpct * 2 ** CalculateFactor(data)
+      infectionsByRequestedTime: Math.ceil(estimatedImpct * (2 ** CalculateFactor(data)))
     },
     severeImpact: {
       currentlyInfected: estimatedSevereImpct,
-      infectionsByRequestedTime: estimatedSevereImpct * 2 ** CalculateFactor(data)
+      infectionsByRequestedTime: Math.ceil(estimatedSevereImpct * (2 ** CalculateFactor(data)))
     }
 
   };
@@ -62,7 +63,7 @@ const covid19ImpactEstimator = (data) => {
     avgDailyIncomePopulation: 0.71
     },
     periodType: "days",
-    timeToElapse: 31,
+    timeToElapse: 100,
     reportedCases: 674,
     population: 66622705,
     totalHospitalBeds: 1380614
