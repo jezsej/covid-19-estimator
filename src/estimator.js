@@ -1,19 +1,29 @@
 import * as utils from './utils';
 
 const covid19ImpactEstimator = (data) => {
-  const { reportedCases } = data;
+  const { reportedCases, totalHospitalBeds } = data;
   const iCurrentlyInfected = reportedCases * 10;
   const sCurrentlyInfected = reportedCases * 50;
+  const iInfectionsByRequestedTime = iCurrentlyInfected * (2 ** utils.CalculateFactor(data));
+  const sInfectionsByRequestedTime = sCurrentlyInfected * (2 ** utils.CalculateFactor(data));
+  const iSevereCasesByRequestedTime = Math.floor(0.15 * (iInfectionsByRequestedTime));
+  const sSevereCasesByRequestedTime = Math.floor(0.15 * (sInfectionsByRequestedTime));
+  const iAvailableBeds = Math.floor((0.35 * totalHospitalBeds)) - iSevereCasesByRequestedTime;
+  const sAvailableBeds = Math.floor((0.35 * totalHospitalBeds)) - sSevereCasesByRequestedTime;
 
   return {
     data,
     impact: {
       currentlyInfected: iCurrentlyInfected,
-      infectionsByRequestedTime: iCurrentlyInfected * (2 ** utils.CalculateFactor(data))
+      infectionsByRequestedTime: iInfectionsByRequestedTime,
+      severeCasesByRequestedTime: iSevereCasesByRequestedTime,
+      hospitalBedsByRequestedTime: iAvailableBeds
     },
     severeImpact: {
       currentlyInfected: sCurrentlyInfected,
-      infectionsByRequestedTime: sCurrentlyInfected * (2 ** utils.CalculateFactor(data))
+      infectionsByRequestedTime: sInfectionsByRequestedTime,
+      severeCasesByRequestedTime: sSevereCasesByRequestedTime,
+      hospitalBedsByRequestedTime: sAvailableBeds
     }
 
   };
