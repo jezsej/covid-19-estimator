@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Covid-19 Estimator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Girassol&display=swap" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <header>
+                    <h1>Covid-19 Estimator</h1>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><img class="img-responsive" alt="coronavirus" src="/images/cdc-coronavirus-image-23311-web.jpg"></div>
+            <div class="col-md-6">
+                <form onsubmit="return grabData()">
+                    <div class="form-group">
+                        <label for="population">
+                            Population
+                            <input data-population class="form-control" type="text" name="population" placeholder=" population" required />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeToElapse">
+                            Time to Elapse
+                            <input data-time-to-elapse class="form-control" type="text" name="timeToElapse" placeholder="Time to Elapse"
+                                required />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="">
+                            Reported Cases
+                            <input data-reported-cases class="form-control" type="text" name="reportedCases" placeholder="Reported cases"
+                                required />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="totalHospitalBeds">
+                            Total Hospital Beds
+                            <input data-total-hospital-beds class="form-control" type="text" name="totalHospitalBeds"
+                                placeholder="Total Hospital beds" required />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="periodType">
+                            Period Type
+                            <select class="form-control" name="periodType" data-period-type>
+                                <option>days</option>
+                                <option>weeks</option>
+                                <option>months</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="btn-group">
+                        <label for="estimate button">
+                            <button name="estimate button" data-goestimate class="btn btn-primary text-uppercase"
+                                type="submit">Estimate</button>
+                        </label>
+                    </div>
+        
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <script type="text/javascript" src="/js/formatData.js"></script>
+
+
+</body>
+
+</html>
