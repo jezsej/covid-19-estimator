@@ -1,22 +1,14 @@
-//import * as estimator from '../../src/estimator';
-const estimator = require('../../src/estimator');
+// import * as estimator from '../../src/estimator.js';
+// const estimator = require('../../src/estimator.js');
 
-const grabData = () => {
-    console.log(`I've been clicked!`);
-    // const population
-    // const timeToElapse
-    // const reportedCases
-    // const totalHospitalBeds
-    // const periodType
+const processData = () => {
+  const data = {
+    population: document.getElementById('population').value,
+    timeToElapse: document.getElementById('timeToElapse').value,
+    reportedCases: document.getElementById('reportedCases').value,
+    totalHospitalBeds: document.getElementById('totalHospitalBeds').value,
+    periodType: document.getElementById('periodType').value
+  };
 
-    // const input = {
-    //     population,
-    //     timeToElapse,
-    //     reportedCases,
-    //     totalHospitalBeds,
-    //     periodType
-    // };
-
-    // const output = estimator.default(input);
+  console.log('input ', data);
 };
-
