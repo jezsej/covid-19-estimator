@@ -39,7 +39,7 @@ module.exports = {
 
       inject: true,
 
-      template: path.resolve('./index.html')
+      template: path.resolve('./dist/index.html')
     })
   ],
   optimization: {
