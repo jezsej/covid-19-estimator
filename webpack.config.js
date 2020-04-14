@@ -4,7 +4,10 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: ['./public/js/formatData.js', './public/js/bootstrap.min.js', './src/estimator.js'],
+  entry: [
+    path.join(__dirname, 'public/js/', 'formatData.js'),
+    path.join(__dirname, 'public/js/', 'bootstrap.min.js'),
+    path.join(__dirname, 'src/estimator.js')],
   output: {
     path: path.resolve('build/js/'),
     publicPath: 'public/js/',
