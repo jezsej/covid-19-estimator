@@ -1,5 +1,4 @@
 const StripLoader = require('strip-loader');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -10,8 +9,6 @@ module.exports = {
     path: path.resolve('build/js/'),
     publicPath: 'public/js/',
     filename: 'bundle.js',
-    libraryTarget: 'var',
-    library: 'data'
   },
   watch: true,
   module: {
@@ -39,7 +36,7 @@ module.exports = {
 
       inject: true,
 
-      template: path.resolve('./dist/index.html')
+      template: path.resolve('./prod/index.html')
     })
   ],
   optimization: {
