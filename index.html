@@ -7,7 +7,7 @@
     <title>Covid-19 Estimator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
-    
+
 </head>
 
 <body>
@@ -21,8 +21,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <img class="img-fluid" alt="coronavirus"
-                    src="public/images/cdc-coronavirus-image-23311-web.jpg">
+                <img class="img-fluid" alt="coronavirus" src="public/images/cdc-coronavirus-image-23311-web.webp">
             </div>
             <div class="col-md-6">
                 <div id="form">
@@ -69,7 +68,7 @@
                         <div class="btn-group">
                             <label for="estimate button">
                                 <button name="estimatebutton" id="estimatebutton" data-goestimate
-                                    class="btn btn-primary text-uppercase"
+                                    class="btn btn-outline-dark text-uppercase"
                                     onclick="return processData()">Estimate</button>
                             </label>
                         </div>
@@ -105,9 +104,22 @@
     </div>
 
     <script src="public/js/jquery.min.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="public/js/formatData.js"></script>
-    
+    <script async src="public/js/bootstrap.min.js"></script>
+    <script async type="text/javascript" src="public/js/formatData.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('public/cache.js')
+                    .then(registration => {
+                        console.log('Service Worker is registered', registration);
+                    })
+                    .catch(err => {
+                        console.error('Registration failed:', err);
+                    });
+            });
+        }
+    </script>
+
 
 </body>
 

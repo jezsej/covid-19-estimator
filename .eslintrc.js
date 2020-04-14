@@ -19,6 +19,8 @@ module.exports = {
   rules: {
     "comma-dangle": ["error", "never"],
     "no-param-reassign": ["error", { "props": false }],
-    "no-unused-vars": 1
+    "no-unused-vars": 1,
+    "arrow-parens": 0,
+    "no-restricted-globals": 1
   },
 };
