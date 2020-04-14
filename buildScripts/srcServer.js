@@ -18,6 +18,7 @@ const port = 3000;
 app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
+app.use('/dist', express.static(path.join(__dirname, '../dist/')));
 app.use('/js', express.static(path.join(__dirname, '../public/js')));
 app.use('/js', express.static(path.join(__dirname, '../node_modules/jquery/dist/')));
 app.use('/js', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/js')));

@@ -1,7 +1,8 @@
-// import * as estimator from '../../src/estimator.js';
-// const estimator = require('../../src/estimator.js');
+import * as estimator from '../../src/estimator';
+import '../css/bootstrap.css';
+// const estimator = require('../../src/estimator');
 
-const processData = () => {
+const handleData = () => {
   const data = {
     population: document.getElementById('population').value,
     timeToElapse: document.getElementById('timeToElapse').value,
@@ -11,4 +12,11 @@ const processData = () => {
   };
 
   console.log('input ', data);
+  console.log('output', estimator.default(data));
 };
+
+if (!Window.handleData) {
+  Window.handleData = handleData;
+} else {
+  console.warn('handleData is already assigned!');
+}
